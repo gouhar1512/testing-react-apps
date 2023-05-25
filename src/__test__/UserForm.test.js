@@ -15,17 +15,11 @@ test('it should show two inputs and a button', () => {
   expect(button).toBeInTheDocument();
 });
 
-test('it calls onAddUser when the form is submitted', () => {
-  // NOT THE BEST IMPLEMENTATION
-
-  const argList = [];
-  const callback = (...args) => {
-    console.log(args)
-    argList.push(args);
-  }
+test('it calls onAddUser when the form is submitted', async () => {
+  const mock = jest.fn();
 
   // Try to render my component
-  render(<UserForm onAddUser={callback} />);
+  render(<UserForm onAddUser={mock} />);
 
   // Find the two inputs
   const [nameInput, emailInput] = screen.getAllByRole('textbox');
@@ -45,7 +39,6 @@ test('it calls onAddUser when the form is submitted', () => {
   button.click();
 
   // Assertion to make sure 'onUserAdd' gets called with name/email
-  expect(argList).toHaveLength(1);
-  expect(argList[0][0]).toEqual({name:'jane', email:'jane@gmail.com'});
-
+  expect(mock).toHaveBeenCalled();
+  expect(mock).toHaveBeenCalledWith({ name: 'jane', email: 'jane@gmail.com' });
 });
