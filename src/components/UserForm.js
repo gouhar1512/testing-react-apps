@@ -23,12 +23,12 @@ const UserForm = (props) => {
   return (
     <form onSubmit={onSubmitHandler}>
       <div>
-        <label>Name</label>
-        <input value={name} onChange={nameChangeHandler} />
+        <label htmlFor="name">Name</label>
+        <input id="name" value={name} onChange={nameChangeHandler} />
       </div>
       <div>
-        <label>Email</label>
-        <input value={email} onChange={emailChangeHandler} />
+        <label htmlFor="email">Email</label>
+        <input id="email" value={email} onChange={emailChangeHandler} />
       </div>
       <button>Add User</button>
     </form>
