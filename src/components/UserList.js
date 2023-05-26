@@ -1,11 +1,11 @@
 import React from "react";
 
 const UserList = ({ users }) => {
-  const renderedUsers = users.map((users) => {
+  const renderedUsers = users.map((user) => {
     return (
-      <tr key={users.name}>
-        <td>{users.name}</td>
-        <td>{users.email}</td>
+      <tr key={user.name}>
+        <td>{user.name}</td>
+        <td>{user.email}</td>
       </tr>
     );
   });
