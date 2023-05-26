@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const UserList = ({ users }) => {
   const renderedUsers = users.map((users) => {
@@ -17,7 +17,7 @@ const UserList = ({ users }) => {
           <th>Email</th>
         </tr>
       </thead>
-      <tbody>{renderedUsers}</tbody>
+      <tbody data-testid="users">{renderedUsers}</tbody>
     </table>
   );
 };
