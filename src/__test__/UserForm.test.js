@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import user from "@testing-library/user-event";
 import UserForm from "../components/UserForm";
 
 test("it should show two inputs and a button", () => {
@@ -30,20 +30,39 @@ test("it calls onAddUser when the form is submitted", async () => {
   });
 
   // Simulate typing in name
-  userEvent.click(nameInput);
-  userEvent.keyboard("jane");
+  user.click(nameInput);
+  user.keyboard("jane");
 
   // Simulate typing in email
-  userEvent.click(emailInput);
-  userEvent.keyboard("jane@gmail.com");
+  user.click(emailInput);
+  user.keyboard("jane@gmail.com");
 
   // Find the button
   const button = screen.getByRole("button");
 
   // Simulate clicking the button
-  button.click();
+  user.click(button);
 
   // Assertion to make sure 'onUserAdd' gets called with name/email
   expect(mock).toHaveBeenCalled();
   expect(mock).toHaveBeenCalledWith({ name: "jane", email: "jane@gmail.com" });
+});
+
+test("it empties the two inputs when form is submitted", async () => {
+  render(<UserForm onAddUser={() => {}} />);
+
+  const nameInput = screen.getByRole("textbox", { name: /name/i });
+  const emailInput = screen.getByRole("textbox", { name: /email/i });
+  const button = screen.getByRole("button");
+
+  user.click(nameInput);
+  user.keyboard("jane");
+
+  user.clear(emailInput);
+  user.keyboard("jane@jane.com");
+
+  user.click(button);
+
+  expect(nameInput).toHaveValue("");
+  expect(emailInput).toHaveValue("");
 });

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const UserForm = (props) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const nameChangeHandler = (e) => {
     setName(e.target.value);
@@ -18,6 +18,8 @@ const UserForm = (props) => {
       name,
       email,
     });
+    setEmail("");
+    setName("");
   };
 
   return (
