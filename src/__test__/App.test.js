@@ -14,15 +14,13 @@ test("it can receive a new user and show it on a list", () => {
   });
   const button = screen.getByRole("button");
 
-  act(() => {
-    user.click(nameInput);
-    user.keyboard("jane");
+  user.click(nameInput);
+  user.keyboard("jane");
 
-    user.click(emailInput);
-    user.keyboard("jane@jane.com");
+  user.click(emailInput);
+  user.keyboard("jane@jane.com");
 
-    user.click(button);
-  });
+  user.click(button);
 
   const name = screen.getByRole("cell", { name: "jane" });
   const email = screen.getByRole("cell", { name: "jane@jane.com" });
